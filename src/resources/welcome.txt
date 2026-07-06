@@ -1,0 +1,14 @@
+Welcome to Jezzball
+
+Jezzball is a highly addictive game for Windows 
+that was originally designed by a Microsoft 
+in 1992 as part of the Microsoft Entertainment Pack. 
+
+Your  objective is to claim at least 75% of the game area, 
+while avoiding balls with the lines that you create. 
+
+A line will expand horizontally or vertically until it hits 
+a wall and becomes a boundary. 
+
+If a ball touches a line before it becomes a boundary, 
+the line is destroyed and you lose a life. 

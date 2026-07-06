@@ -1,0 +1,12 @@
+<b>How to play</b>
+
+To create a line - <b>Left click </b>
+To toggle between horizontal and vertical lines - <b>Right click</b>
+To pause  
+    <b>Escape</b> 
+    or 
+    <b>left click</b> outside the field
+To resume 
+    <b>any key</b> 
+    or 
+    <b>left click</b>

@@ -1,0 +1,185 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>3585ff04-852d-44f0-b652-284b2989adc5</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>assets\src\main.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>jezzball</Name>
+    <RootNamespace>jezzball</RootNamespace>
+    <InterpreterId>MSBuild|.venv|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="assets\" />
+    <Folder Include="assets\images\" />
+    <Folder Include="assets\images\background\" />
+    <Folder Include="assets\images\background\animals\" />
+    <Folder Include="assets\images\background\space\" />
+    <Folder Include="assets\images\ball\" />
+    <Folder Include="assets\images\ball_monster\" />
+    <Folder Include="assets\images\bar\" />
+    <Folder Include="assets\images\explosion\" />
+    <Folder Include="assets\images\heart\" />
+    <Folder Include="assets\images\not use\" />
+    <Folder Include="assets\sounds\" />
+    <Folder Include="assets\src\" />
+    <Folder Include="assets\src\controls\" />
+    <Folder Include="assets\src\resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\images\.DS_Store" />
+    <Content Include="assets\images\background\.DS_Store" />
+    <Content Include="assets\images\background\animals\alpaca.jpg" />
+    <Content Include="assets\images\background\animals\ape.jpg" />
+    <Content Include="assets\images\background\animals\bantang.jpg" />
+    <Content Include="assets\images\background\animals\camel.jpg" />
+    <Content Include="assets\images\background\animals\cow.jpg" />
+    <Content Include="assets\images\background\animals\duck.jpg" />
+    <Content Include="assets\images\background\animals\frog.jpg" />
+    <Content Include="assets\images\background\animals\gepard.jpg" />
+    <Content Include="assets\images\background\animals\giant_tortoise.jpg" />
+    <Content Include="assets\images\background\animals\gnu.jpg" />
+    <Content Include="assets\images\background\animals\hippopotamus.jpg" />
+    <Content Include="assets\images\background\animals\insect.jpg" />
+    <Content Include="assets\images\background\animals\lion.jpg" />
+    <Content Include="assets\images\background\animals\pandas.jpg" />
+    <Content Include="assets\images\background\animals\parrot.jpg" />
+    <Content Include="assets\images\background\animals\rhino.jpg" />
+    <Content Include="assets\images\background\animals\swan.jpg" />
+    <Content Include="assets\images\background\animals\tiger.jpg" />
+    <Content Include="assets\images\background\animals\white_spoonbill_bird.jpg" />
+    <Content Include="assets\images\background\space\.DS_Store" />
+    <Content Include="assets\images\background\space\1.jpg" />
+    <Content Include="assets\images\background\space\10.jpg" />
+    <Content Include="assets\images\background\space\11.jpg" />
+    <Content Include="assets\images\background\space\12.jpg" />
+    <Content Include="assets\images\background\space\13.jpg" />
+    <Content Include="assets\images\background\space\14.jpg" />
+    <Content Include="assets\images\background\space\15.jpg" />
+    <Content Include="assets\images\background\space\16.jpg" />
+    <Content Include="assets\images\background\space\17.jpg" />
+    <Content Include="assets\images\background\space\18.jpg" />
+    <Content Include="assets\images\background\space\2.jpg" />
+    <Content Include="assets\images\background\space\3.jpg" />
+    <Content Include="assets\images\background\space\4.jpg" />
+    <Content Include="assets\images\background\space\5.jpg" />
+    <Content Include="assets\images\background\space\6.jpg" />
+    <Content Include="assets\images\background\space\7.jpg" />
+    <Content Include="assets\images\background\space\8.jpg" />
+    <Content Include="assets\images\background\space\9.jpg" />
+    <Content Include="assets\images\ball\00.png" />
+    <Content Include="assets\images\ball\01.png" />
+    <Content Include="assets\images\ball\02.png" />
+    <Content Include="assets\images\ball\03.png" />
+    <Content Include="assets\images\ball\04.png" />
+    <Content Include="assets\images\ball\05.png" />
+    <Content Include="assets\images\ball\06.png" />
+    <Content Include="assets\images\ball\07.png" />
+    <Content Include="assets\images\ball\08.png" />
+    <Content Include="assets\images\ball\09.png" />
+    <Content Include="assets\images\ball\10.png" />
+    <Content Include="assets\images\ball\13.png" />
+    <Content Include="assets\images\ball\14.png" />
+    <Content Include="assets\images\ball\15.png" />
+    <Content Include="assets\images\ball_monster\.DS_Store" />
+    <Content Include="assets\images\ball_monster\0.png" />
+    <Content Include="assets\images\ball_monster\1.png" />
+    <Content Include="assets\images\ball_monster\2.png" />
+    <Content Include="assets\images\ball_monster\3.png" />
+    <Content Include="assets\images\bar\.DS_Store" />
+    <Content Include="assets\images\bar\barh.png" />
+    <Content Include="assets\images\bar\barv.png" />
+    <Content Include="assets\images\cancel.png" />
+    <Content Include="assets\images\default.png" />
+    <Content Include="assets\images\exit.png" />
+    <Content Include="assets\images\explosion\exp1.png" />
+    <Content Include="assets\images\explosion\exp2.png" />
+    <Content Include="assets\images\explosion\exp3.png" />
+    <Content Include="assets\images\explosion\exp4.png" />
+    <Content Include="assets\images\explosion\exp5.png" />
+    <Content Include="assets\images\heart\0.png" />
+    <Content Include="assets\images\heart\1.png" />
+    <Content Include="assets\images\heart\2.png" />
+    <Content Include="assets\images\heart\3.png" />
+    <Content Include="assets\images\help.png" />
+    <Content Include="assets\images\jezzball.png" />
+    <Content Include="assets\images\not use\info.png" />
+    <Content Include="assets\images\not use\ok.png" />
+    <Content Include="assets\images\options.png" />
+    <Content Include="assets\images\start.png" />
+    <Content Include="assets\images\undo.png" />
+    <Content Include="assets\jezzball.icns" />
+    <Content Include="assets\jezzball.ico" />
+    <Content Include="assets\sounds\click.ogg" />
+    <Content Include="assets\sounds\exit.ogg" />
+    <Content Include="assets\sounds\explode.wav" />
+    <Content Include="assets\sounds\loss.ogg" />
+    <Content Include="assets\sounds\new_level.ogg" />
+    <Content Include="assets\sounds\start.ogg" />
+    <Content Include="assets\src\resources\about.txt" />
+    <Content Include="assets\src\resources\help.txt" />
+    <Content Include="assets\src\resources\welcome.txt" />
+    <Content Include="readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include=".venv\">
+      <Id>.venv</Id>
+      <Version>3.14</Version>
+      <Description>.venv (Python 3.14 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="assets\src\animated_object.py" />
+    <Compile Include="assets\src\ball.py" />
+    <Compile Include="assets\src\bar.py" />
+    <Compile Include="assets\src\colors.py" />
+    <Compile Include="assets\src\controls\button.py" />
+    <Compile Include="assets\src\controls\checkbox.py" />
+    <Compile Include="assets\src\controls\checkGroup.py" />
+    <Compile Include="assets\src\controls\combobox.py" />
+    <Compile Include="assets\src\controls\controls.py" />
+    <Compile Include="assets\src\controls\form.py" />
+    <Compile Include="assets\src\controls\image.py" />
+    <Compile Include="assets\src\controls\label.py" />
+    <Compile Include="assets\src\controls\listbox.py" />
+    <Compile Include="assets\src\controls\message.py" />
+    <Compile Include="assets\src\controls\slider.py" />
+    <Compile Include="assets\src\controls\textBox.py" />
+    <Compile Include="assets\src\draw_html.py" />
+    <Compile Include="assets\src\field.py" />
+    <Compile Include="assets\src\form_options.py" />
+    <Compile Include="assets\src\main.py" />
+    <Compile Include="assets\src\main_form.py" />
+    <Compile Include="assets\src\menu_mode.py" />
+    <Compile Include="assets\src\resources\__init__.py" />
+    <Compile Include="assets\src\settings.py" />
+    <Compile Include="assets\src\themes.py" />
+    <Compile Include="assets\src\timer.py" />
+    <Compile Include="assets\src\utils.py" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

@@ -1,0 +1,12 @@
+{APP_NAME}
+Version {VERSION}
+Made by {AUTHOR}
+
+<b>Summary</b>
+User: <i>{USER_NAME}</i>
+Total games: <i>{GAME_COUNT}</i>
+High score: <i>{SCORE}</i>
+High level: <i>{LEVEL}</i>
+Avg level:  <i>{AVG_LEVEL}</i>
+
+<img src=appl>
