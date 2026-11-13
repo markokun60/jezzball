@@ -1,3 +1,5 @@
+#import asyncio
+
 import pygame
 import time 
 import sys 
@@ -92,7 +94,7 @@ class Game:
         self._load_sounds()
         #
         init_controls()
-        self.font      = pygame.font.SysFont(Control.FONT, 36)
+        self.font      = pygame.font.SysFont(Control.FONT, 36,bold=True)
         self.font_info = pygame.font.SysFont(Control.FONT, 16)
         self.main_form = MainForm(self)
         self.select_theme(self.theme_name)
@@ -603,6 +605,15 @@ class Game:
             if config.has_option(section,KEY_AVG_LEVEL):
                 self.avg_level= config.getfloat(section,KEY_AVG_LEVEL)
         
+
+
+
+#async def main():
+#    game = Game()
+#    game.run()
+#    pygame.quit()  
+
+#asyncio.run(main())             
 
 if __name__=="__main__":
     if not isdir(FOLDER_DATA):

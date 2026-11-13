@@ -14,6 +14,7 @@ class Theme:
                  open_cell_color    :tuple[int,int,int],
                  text_color_info    :tuple[int,int,int],
                  text_color_field   :tuple[int,int,int],
+                 edge_color         :tuple[int,int,int],
                  control_mode:int
         ):
         self.background_color   = bkg_color
@@ -23,6 +24,7 @@ class Theme:
         self.open_cell_color    = open_cell_color
         self.text_color_info    = text_color_info,
         self.text_color_field   = text_color_field,
+        self.edge_color         = edge_color,
         self.control_mode       = control_mode   
         self.progress_bars      = [BLUE,RED]   
         self.cursor_color       = RED
@@ -38,6 +40,7 @@ class ClassicTheme(Theme):
                 open_cell_color     = BLACK,
                 text_color_info     = WHITE,
                 text_color_field    = WHITE,
+                edge_color          = YELLOW,
                 control_mode=Control.NIGHT_MODE   
             )  
 
@@ -52,6 +55,7 @@ class DesertTheme(Theme):
                 open_cell_color  = LIGHT_GRAY,
                 text_color_info  = BLACK,
                 text_color_field = BLACK,
+                edge_color       = ORANGE,
                 control_mode = Control.DESERT_MODE
             )  
             #self.ball_path = "ball_monster"        
@@ -66,6 +70,7 @@ class GreenTheme(Theme):
                 open_cell_color  = AQUA,
                 text_color_info  = YELLOW,
                 text_color_field = BLACK,
+                edge_color       = GREEN,
                 control_mode = Control.GREEN_MODE
             )          
 
@@ -79,6 +84,7 @@ class SnowTheme(Theme):
                 open_cell_color  = PURPL_LIGHT,
                 text_color_info  = BLACK,
                 text_color_field = BLACK,
+                edge_color=        WHITE_DARK, 
                 control_mode = Control.DAY_MODE      
             )   
 
@@ -92,6 +98,7 @@ class MarsTheme(Theme):
                 open_cell_color  = RED_DARK ,
                 text_color_info  = WHITE,
                 text_color_field = WHITE,
+                edge_color=        ORANGE,
                 control_mode = Control.RED_MODE      
             )  
             self.progress_bars = [GREEN,BLUE]   

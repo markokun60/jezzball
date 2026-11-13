@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3585ff04-852d-44f0-b652-284b2989adc5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>assets\src\main.py</StartupFile>
+    <StartupFile>src/main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -12,6 +12,7 @@
     <Name>jezzball</Name>
     <RootNamespace>jezzball</RootNamespace>
     <InterpreterId>MSBuild|.venv|$(MSBuildProjectFullPath)</InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,12 +35,11 @@
     <Folder Include="assets\images\heart\" />
     <Folder Include="assets\images\not use\" />
     <Folder Include="assets\sounds\" />
-    <Folder Include="assets\src\" />
-    <Folder Include="assets\src\controls\" />
-    <Folder Include="assets\src\resources\" />
+    <Folder Include="src\" />
+    <Folder Include="src\controls\" />
+    <Folder Include="src\resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\.DS_Store" />
     <Content Include="assets\images\background\.DS_Store" />
     <Content Include="assets\images\background\animals\alpaca.jpg" />
     <Content Include="assets\images\background\animals\ape.jpg" />
@@ -93,12 +93,10 @@
     <Content Include="assets\images\ball\13.png" />
     <Content Include="assets\images\ball\14.png" />
     <Content Include="assets\images\ball\15.png" />
-    <Content Include="assets\images\ball_monster\.DS_Store" />
     <Content Include="assets\images\ball_monster\0.png" />
     <Content Include="assets\images\ball_monster\1.png" />
     <Content Include="assets\images\ball_monster\2.png" />
     <Content Include="assets\images\ball_monster\3.png" />
-    <Content Include="assets\images\bar\.DS_Store" />
     <Content Include="assets\images\bar\barh.png" />
     <Content Include="assets\images\bar\barv.png" />
     <Content Include="assets\images\cancel.png" />
@@ -128,10 +126,10 @@
     <Content Include="assets\sounds\loss.ogg" />
     <Content Include="assets\sounds\new_level.ogg" />
     <Content Include="assets\sounds\start.ogg" />
-    <Content Include="assets\src\resources\about.txt" />
-    <Content Include="assets\src\resources\help.txt" />
-    <Content Include="assets\src\resources\welcome.txt" />
     <Content Include="readme.md" />
+    <Content Include="src\resources\about.txt" />
+    <Content Include="src\resources\help.txt" />
+    <Content Include="src\resources\welcome.txt" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include=".venv\">
@@ -145,33 +143,33 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="assets\src\animated_object.py" />
-    <Compile Include="assets\src\ball.py" />
-    <Compile Include="assets\src\bar.py" />
-    <Compile Include="assets\src\colors.py" />
-    <Compile Include="assets\src\controls\button.py" />
-    <Compile Include="assets\src\controls\checkbox.py" />
-    <Compile Include="assets\src\controls\checkGroup.py" />
-    <Compile Include="assets\src\controls\combobox.py" />
-    <Compile Include="assets\src\controls\controls.py" />
-    <Compile Include="assets\src\controls\form.py" />
-    <Compile Include="assets\src\controls\image.py" />
-    <Compile Include="assets\src\controls\label.py" />
-    <Compile Include="assets\src\controls\listbox.py" />
-    <Compile Include="assets\src\controls\message.py" />
-    <Compile Include="assets\src\controls\slider.py" />
-    <Compile Include="assets\src\controls\textBox.py" />
-    <Compile Include="assets\src\draw_html.py" />
-    <Compile Include="assets\src\field.py" />
-    <Compile Include="assets\src\form_options.py" />
-    <Compile Include="assets\src\main.py" />
-    <Compile Include="assets\src\main_form.py" />
-    <Compile Include="assets\src\menu_mode.py" />
-    <Compile Include="assets\src\resources\__init__.py" />
-    <Compile Include="assets\src\settings.py" />
-    <Compile Include="assets\src\themes.py" />
-    <Compile Include="assets\src\timer.py" />
-    <Compile Include="assets\src\utils.py" />
+    <Compile Include="src\animated_object.py" />
+    <Compile Include="src\ball.py" />
+    <Compile Include="src\bar.py" />
+    <Compile Include="src\colors.py" />
+    <Compile Include="src\controls\button.py" />
+    <Compile Include="src\controls\checkbox.py" />
+    <Compile Include="src\controls\checkGroup.py" />
+    <Compile Include="src\controls\combobox.py" />
+    <Compile Include="src\controls\controls.py" />
+    <Compile Include="src\controls\form.py" />
+    <Compile Include="src\controls\image.py" />
+    <Compile Include="src\controls\label.py" />
+    <Compile Include="src\controls\listbox.py" />
+    <Compile Include="src\controls\message.py" />
+    <Compile Include="src\controls\slider.py" />
+    <Compile Include="src\controls\textBox.py" />
+    <Compile Include="src\draw_html.py" />
+    <Compile Include="src\field.py" />
+    <Compile Include="src\form_options.py" />
+    <Compile Include="src\main.py" />
+    <Compile Include="src\main_form.py" />
+    <Compile Include="src\menu_mode.py" />
+    <Compile Include="src\resources\__init__.py" />
+    <Compile Include="src\settings.py" />
+    <Compile Include="src\themes.py" />
+    <Compile Include="src\timer.py" />
+    <Compile Include="src\utils.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

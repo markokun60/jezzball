@@ -1,7 +1,7 @@
 from typing import Final
 
 AUTHOR :Final[str] = "Mark"
-VERSION:Final[str] = "1.0.0"
+VERSION:Final[str] = "1.1.0"
 TITLE:Final[str]  = 'Jezzball'
 
 CELL_SIZE :Final[int]  = 16

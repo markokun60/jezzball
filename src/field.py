@@ -83,7 +83,11 @@ class Field:
                     if self.is_grid:
                         pygame.draw.rect(screen, clr_brd, (x,y,CELL_SIZE,CELL_SIZE),1)
                 elif self.cells[col][row] == BAR:                   
-                    pygame.draw.rect(screen, clr_bar, (x,y,CELL_SIZE,CELL_SIZE))                       
+                    pygame.draw.rect(screen, clr_bar, (x,y,CELL_SIZE,CELL_SIZE))   
+
+        if Theme.Current.edge_color is not None:
+            edge_size = 2                    
+            pygame.draw.rect(screen, Theme.Current.edge_color, (LEFT-edge_size,TOP-edge_size,self.cols * CELL_SIZE + edge_size * 2, self.rows* CELL_SIZE+edge_size),edge_size)   
                  
 
     def set_bar(self, rect:pygame.FRect,direction:str) -> None:

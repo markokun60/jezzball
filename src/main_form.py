@@ -33,7 +33,7 @@ class MainForm(Form):
         self.form_options = Form_Options(self,self.game, self.images)
         self.status = MenuMode.WELCOME
         self.draw_sources = {}
-        self.font = pygame.font.SysFont(Control.FONT, 16)
+        self.font = pygame.font.SysFont(Control.FONT, 16,bold=True)
 
     def close(self):
         self.status = MenuMode.WELCOME
@@ -63,7 +63,7 @@ class MainForm(Form):
             "{USER_NAME}" : self.game.player_name,
             "{SCORE}"     : str(self.game.high_score),
             "{LEVEL}"     : str(self.game.high_level) ,
-            "{AVG_LEVEL}" : str(self.game.avg_level) ,
+            "{AVG_LEVEL}" : str(round(self.game.avg_level,3)) ,
             "{GAME_COUNT}": str(self.game.total_games)
         }
 
