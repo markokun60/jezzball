@@ -22,11 +22,11 @@ from controls.controls   import Control,init_controls
 from timer      import Timer
 
 class GameMode(Enum):
-    WELCOME   = 1
-    PRE_LEVEL = 2
-    PLAY_MODE = 3
-    POST_LEVEL= 4
-    LOST      = 5
+    WELCOME     :Final[int] = 1
+    PRE_LEVEL   :Final[int] = 2
+    PLAY_MODE   :Final[int] = 3
+    POST_LEVEL  :Final[int] = 4
+    LOST        :Final[int] = 5
 
 class Game:
     PROGRESS_BAR_WIDTH = 80
@@ -64,7 +64,9 @@ class Game:
         #
         self.clock = pygame.time.Clock()
         self.running = False
-        
+
+        self.is_time_limit = True
+        self.clearing_happens = False
         self.score = 0
         self.start_time = time.time()        
         self.game_duration = 60  # Game lasts for 60 seconds
@@ -112,6 +114,7 @@ class Game:
     def set_default(self):
         self.is_sound = True
         self.speed    = 1
+        self.is_time_limit = True
         set_theme(CLASSIC)
         self.field.set_cols_rows(COLS,ROWS)
         self.field.is_grid = True
@@ -232,10 +235,11 @@ class Game:
     def draw_right_info_messages(self):   
         messages = Messages()
         messages.add("Score:",str(self.score),"123456789")
-        messages.add("Game Time:",str(self.game_time))
+        #messages.add("Game Time:",str(self.game_time))
+        messages.add("Game Time:",str(self.get_elapsed_time()))
         messages.generate(self.font_info,Theme.Current.text_color_info)
 
-        rect = self.field.get_rect()
+        #rect = self.field.get_rect()
         #x = rect.right - messages.width
         x = self.field.window_width - messages.width - 10
         y = self.field.window_height - 2 * CELL_SIZE
@@ -244,12 +248,13 @@ class Game:
 
     def draw_left_info_messages(self):
         n = self.get_progress_value()
-        elapsed_time = self.get_elapsed_time()
-        time_left = self.game_duration  - elapsed_time  
-      
         messages = Messages()
         messages.add(f"{n}%"        ,'','100')
-        messages.add("Time Left:"   ,str(time_left),'xxx')
+            
+        elapsed_time = self.get_elapsed_time()
+        if self.is_time_limit:
+            time_left = self.game_duration - elapsed_time        
+            messages.add("Time Left:"   ,str(time_left),'xxx')
         messages.generate(self.font_info,Theme.Current.text_color_info)
 
         x = 10
@@ -259,8 +264,10 @@ class Game:
         x += messages.width
         x += 4
         draw_h_pregress_bar(self.screen, x,y,self.done_cells,self.target_cells,Game.PROGRESS_BAR_WIDTH)
-        y += CELL_SIZE
-        draw_h_pregress_bar(self.screen, x,y,elapsed_time,self.game_duration,Game.PROGRESS_BAR_WIDTH)
+
+        if self.is_time_limit:
+            y += CELL_SIZE
+            draw_h_pregress_bar(self.screen, x,y,elapsed_time,self.game_duration,Game.PROGRESS_BAR_WIDTH)
         
        
     def draw(self):
@@ -303,14 +310,12 @@ class Game:
             self.pause_time += (time.time() - self.pause_started)
             self.message = None
 
-
     def set_sizes(self,c:int,r:int):
         #if  c != self.field.cols or r != self.field.rows:
         self.field.set_cols_rows(cols=c,rows=r)
         self.screen = pygame.display.set_mode((self.field.window_width, self.field.window_height))
 
     def to_welcome(self):
-
         self.message = None
         self.set_cursor()
         self.mode = GameMode.WELCOME
@@ -321,6 +326,7 @@ class Game:
             self.start_sound.play()
         self.level = 0
         self.score = 0
+        
         self.pause_time = 0
         self.game_time = 0
         self.direction = VERTICAL
@@ -359,6 +365,7 @@ class Game:
         self.game_duration = 60  # Game lasts for 60 seconds
         self.game_duration += (self.level * 10)
         self.level += 1 
+        self.clearing_happens = False
         self.total_lives = self.level
         self.total_balls =  self.level
         if self.total_balls > MAX_BALLS:
@@ -424,6 +431,7 @@ class Game:
             self.field.marked_cells(col,row)
 
         self.field.change_marked_cells(FREE, BAR)     
+        #self.field.print_cells()
         self.field.change_marked_cells(MARKED, FREE)
         #self.field.print_cells()
 
@@ -478,6 +486,7 @@ class Game:
                         if self.total_lives <= 0:
                             self.lost("No more lives")        
 
+
     def update(self,dt:int) -> None:
         old_done = self.done_cells
         b = False
@@ -486,8 +495,12 @@ class Game:
                 b = True
         if b:
             self.get_free_cells()
+            self.clearing_happens = True            
+        elif self.clearing_happens:
+            if self.field.change_marked_cells(BAR, DONE)  == 0:
+                self.clearing_happens = False  
             
-        self.done_cells = self.field.count(BAR)
+        self.done_cells = self.field.count(BAR) + self.field.count(DONE)    
 
         if self.done_cells != old_done:
             score = (self.done_cells -  old_done) * SCORE_PER_CELL
@@ -499,20 +512,20 @@ class Game:
             self.score +=  score
     
         if self.done_cells >= self.target_cells:
-            percent = self.get_progress_value() - TARGET_PERCENT
+            percent = self.get_progress_value()
             print(f"Level {self.level} completed! Score: {self.score} Done: {self.done_cells}: {percent}% . Target:{self.target_cells}")
 
             if percent >= 90:      
-                self.score += (self.get_progress_value() - TARGET_PERCENT) * SCORE_BONUS_80
+                self.score += (percent - TARGET_PERCENT) * SCORE_BONUS_80
             elif percent >= 80:      
-                self.score += (self.get_progress_value() - TARGET_PERCENT) * SCORE_BONUS_90
+                self.score += (percent - TARGET_PERCENT) * SCORE_BONUS_90
             self.mode = GameMode.POST_LEVEL
             self.timer_pass_level.activate()
             self.message = "You pass the level"
         else:
             self.balls_collision()
             self.balls_bars_collision(dt)
-            if self.mode == GameMode.PLAY_MODE:
+            if self.mode == GameMode.PLAY_MODE and self.is_time_limit:
                 if self.get_elapsed_time() >= self.game_duration:
                     self.lost("No more time")
 
@@ -520,6 +533,8 @@ class Game:
         self.running = True        
         while self.running:
             fps = 10 + self.speed * 10
+            if self.clearing_happens:
+                fps = 1000
             dt = self.clock.tick(fps)/1000
             if not self.handle_events(): break
             #
@@ -545,7 +560,8 @@ class Game:
             KEY_SPEED : self.speed,
             KEY_ROWS  : self.field.rows,
             KEY_COLS  : self.field.cols,
-            KEY_GRID  : self.field.is_grid  
+            KEY_GRID  : self.field.is_grid ,
+            KEY_TIME_LIMIT : self.is_time_limit 
         }
         return x
 
@@ -557,6 +573,7 @@ class Game:
         self.field.rows    = x[KEY_ROWS]
         self.field.cols    = x[KEY_COLS]
         self.field.is_grid = x[KEY_GRID]    
+        self.is_time_limit = x[KEY_TIME_LIMIT]
 
     def save_config(self):
         file_path = join(FOLDER_DATA,SETTINGS_FILE)
@@ -589,6 +606,9 @@ class Game:
 
         if config.has_option(section,KEY_GRID):
             self.field.is_grid = config.getboolean(section,KEY_GRID)
+
+        if config.has_option(section,KEY_TIME_LIMIT):
+            self.is_time_limit = config.getboolean(section,KEY_TIME_LIMIT)    
 
         if config.has_option(section,KEY_ROWS) and config.has_option(section,KEY_COLS):
             self.field.rows = config.getint(section,KEY_ROWS) 

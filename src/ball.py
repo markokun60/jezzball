@@ -7,7 +7,6 @@ from pygame.math import Vector2
 from utils       import load_images
 from settings    import *
 from colors      import *
-from utils       import swap_color  
 from themes      import Theme
 
 class Ball:
@@ -122,7 +121,7 @@ class Ball:
             res = True
         else:
             (col,row) = p
-            if field.cells[col][row] == BAR:
+            if field.cells[col][row] == BAR or field.cells[col][row] == DONE:
                 self.direction.x *= -1
                 res = True
 
@@ -137,7 +136,7 @@ class Ball:
             res = True
         else:
             (col,row) = p
-            if field.cells[col][row] == BAR:
+            if field.cells[col][row] == BAR or field.cells[col][row] == DONE:
                 self.direction.y *= -1
                 res = True
 

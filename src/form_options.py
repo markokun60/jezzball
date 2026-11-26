@@ -5,13 +5,9 @@ from controls.form       import Form
 from controls.button     import Button
 from controls.checkbox   import Checkbox
 from controls.combobox   import Combobox 
-#from controls.checkGroup import CheckGroup
 from controls.textBox    import InputBox 
 from controls.label      import Label 
-#from controls.listbox    import ListBox
-#from controls.image      import Image
 from controls.controls   import *
-#from controls.message    import Message
 
 from settings import *
 from menu_mode          import MenuMode
@@ -104,6 +100,9 @@ class Form_Options(Form):
       (x,y) = self.next_down(DY,self.chkSound)
       self.chkGrid = Checkbox('chkGrid',position=(x,y),text='Grid',checked= self.game.field.is_grid,func=self.grid)
       #      
+      (x,y) = self.next_down(DY,self.chkGrid )
+      self.chkTimeLimit = Checkbox('chkTimeLimmit',position=(x,y),text='Time Limit',checked= self.game.is_time_limit,func=self.time_limit)
+      #
       (x,y) = self.next_down(DY)
       lblTheme =  Label('lblTheme',position=(xLeft ,y),text='Theme:') 
       self.cboThemes = self.create_themes_box(xv,y)
@@ -134,6 +133,9 @@ class Form_Options(Form):
    def grid(self,value):
       self.game.field.is_grid = value
 
+   def time_limit(self,value):
+      self.game.is_time_limit = value
+
    def theme(self,value,index):
       self.game.theme_name = value
       set_theme(value)
@@ -161,4 +163,5 @@ class Form_Options(Form):
       self.chkGrid.checked  = self.game.field.is_grid 
       self.txtUserName.set_text(self.game.player_name)
       self.cboSpeed.setIndex(self.game.speed)
+      self.chkTimeLimit.checked = self.game.is_time_limit
           

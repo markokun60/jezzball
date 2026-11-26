@@ -26,7 +26,7 @@ class Field:
     def get_cell(self, position:tuple) -> tuple:
         (x,y) = position
         rect = self.get_rect()
-        if x < rect.left or x > rect.right or y < rect.top or y > rect.bottom:return None
+        if x < rect.left or x >= rect.right or y < rect.top or y >= rect.bottom:return None
 
         col = int((x - rect.left) / CELL_SIZE)
         row = int((y - rect.top)  / CELL_SIZE)
@@ -72,7 +72,7 @@ class Field:
 
     def draw(self, screen:pygame.Surface) -> None: 
         clr_free = Theme.Current.closed_cell_color
-        clr_bar = Theme.Current.open_cell_color        
+        clr_done = Theme.Current.open_cell_color        
         clr_brd  = Theme.Current.grid_color
         for row in range(self.rows):
             y = TOP  + row * CELL_SIZE
@@ -82,8 +82,10 @@ class Field:
                     pygame.draw.rect(screen, clr_free, (x,y,CELL_SIZE,CELL_SIZE))
                     if self.is_grid:
                         pygame.draw.rect(screen, clr_brd, (x,y,CELL_SIZE,CELL_SIZE),1)
-                elif self.cells[col][row] == BAR:                   
-                    pygame.draw.rect(screen, clr_bar, (x,y,CELL_SIZE,CELL_SIZE))   
+                elif self.cells[col][row] == DONE:# BAR:                   
+                    pygame.draw.rect(screen, clr_done, (x,y,CELL_SIZE,CELL_SIZE))  
+                else:
+                    pygame.draw.rect(screen, (0,255,0), (x,y,CELL_SIZE,CELL_SIZE))    
 
         if Theme.Current.edge_color is not None:
             edge_size = 2                    
@@ -96,20 +98,54 @@ class Field:
             (col1,row) = self.get_cell_in_field((rect.right, rect.top))
             
             for col in range(col0, col1+1):
-                self.cells[col][row] = BAR
+                if self.cells[col][row] == FREE:
+                    self.cells[col][row] = BAR
         else:
             (col,row0) = self.get_cell_in_field((rect.left, rect.top))
             (col,row1) = self.get_cell_in_field((rect.left, rect.bottom))
             for row in range(row0, row1+1):
-                self.cells[col][row] = BAR
+                if self.cells[col][row] == FREE:
+                    self.cells[col][row] = BAR
 
-    def change_marked_cells(self,old_value:int, new_value:int) ->  None: 
+    def change_marked_cells(self,old_value:int, new_value:int) ->  int:
+        n = 0 
         for row in range(self.rows):
             for col in range(self.cols):
                 if self.cells[col][row] == old_value:
                     self.cells[col][row] = new_value
+                    n += 1
+        return n
 
-    def marked_cells(self, col0:int,row0:int) -> None:
+    def marked_cells(self, col0: int, row0: int) -> None:
+        if not (0 <= col0 < self.cols and 0 <= row0 < self.rows):
+            return
+        if self.cells[col0][row0] != FREE:
+            return
+
+        directions = [
+            (0, 1), (0, -1), (1, 0), (-1, 0),
+            (1, 1), (1, -1), (-1, 1), (-1, -1),
+        ]
+
+        self.cells[col0][row0] = MARKED
+        stack = [(col0, row0)]
+
+        while stack:
+            col, row = stack.pop()
+
+            for dc, dr in directions:
+                next_col = col + dc
+                next_row = row + dr
+
+                if not (0 <= next_col < self.cols and 0 <= next_row < self.rows):
+                    continue
+
+                if self.cells[next_col][next_row] == FREE:
+                    self.cells[next_col][next_row] = MARKED
+                    stack.append((next_col, next_row))
+
+
+    def marked_cells_not_use(self, col0:int,row0:int) -> None:
         directions = [(0,1),(0,-1),(1,0),(-1,0),(1,1),(1,-1),(-1,1),(-1,-1)]
         for (r,c) in directions:
             row = row0 + r

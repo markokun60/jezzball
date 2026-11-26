@@ -83,7 +83,7 @@ class Bar:
             self.active = False
         else:
             (col,row)  = p
-            if field.cells[col][row] == BAR:
+            if field.cells[col][row] == BAR or field.cells[col][row] == DONE:
                 self.active = False
 
     def set_cells_not_use(self,field,value):

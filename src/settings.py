@@ -48,6 +48,7 @@ KEY_ROWS       :Final[str] = "rows"
 KEY_COLS       :Final[str] = "cols"
 KEY_GAMES_COUNT:Final[str] = "total_games"
 KEY_AVG_LEVEL  :Final[str] = "avg_level"
+KEY_TIME_LIMIT :Final[str] = "time_limit"
 #
 # Themes
 #
@@ -60,10 +61,10 @@ MARS   :Final[str] = "mars"
 VERTICAL  :Final[str] = 'V'
 HORIZONTAL:Final[str] = 'H'	
 
-FREE:Final[int]   = 0
-BAR:Final[int] 	  = 1
-MARKED:Final[int] = 2
-
+FREE   :Final[int] = 0
+BAR    :Final[int] = 1
+MARKED :Final[int] = 2
+DONE   :Final[int] = 3
 #
 W_BUTTON :Final[int] = 90
 H_BUTTON :Final[int] = 40
@@ -78,6 +79,3 @@ SCORE_BONUS_90 = 10
 TARGET_PERCENT = 75
 MAX_BALLS      = 50
 #
-#
-
-
